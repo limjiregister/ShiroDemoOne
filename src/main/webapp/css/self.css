@@ -1,0 +1,90 @@
+.header {
+	background: #080202;
+	height: 50px;
+	color: white;
+	min-width: 1100px;
+}
+
+.logo {
+	margin-left: 10px;
+	margin-top: 8px;
+	width: 151px;
+	height: 36px;
+	float: left;
+	display: block;
+}
+
+.loginfont {
+	float: right;
+	color: #fff;
+}
+
+.loginfont ul {
+	margin-top: 11px;
+	padding-right: 14px;
+}
+
+.loginfont ul li {
+	float: left;
+	line-height: 31px;
+	font-size: 20px;
+	margin-right: 10px;
+}
+
+#side {
+
+	float: left;
+	width: 170px;
+	height: 100%;
+	background: #bbf2bf;
+	font-size: 18px;
+	color: #000;
+	margin-top: 3px;
+}
+
+#content {
+
+	float: left;
+	margin-left: 20px;
+	margin-top: 3px;
+	/*border:1px solid black;*/
+	width: 80%;
+	height: 100%;
+}
+
+/*aminate*/
+/* line 491, ../sass/ng-animation.scss */
+.aaa.ng-enter {
+	transform: translateY(-240px);
+	-ms-transform: translateY(-240px);
+	-webkit-transform: translateY(-240px);
+	transition-duration: 250ms;
+	-webkit-transition-duration: 250ms;
+	opacity: 0;
+}
+
+/* line 497, ../sass/ng-animation.scss */
+.aaa.ng-enter-active {
+	transform: translateY(0);
+	-ms-transform: translateY(0);
+	-webkit-transform: translateY(0);
+	opacity: 1;
+}
+
+/* line 502, ../sass/ng-animation.scss */
+.aaa.ng-leave {
+	transform: translateY(0);
+	-ms-transform: translateY(0);
+	-webkit-transform: translateY(0);
+	transition-duration: 250ms;
+	-webkit-transition-duration: 250ms;
+	opacity: 1;
+}
+
+/* line 508, ../sass/ng-animation.scss */
+.aaa.ng-leave-active {
+	transform: translateY(-240px);
+	-ms-transform: translateY(-240px);
+	-webkit-transform: translateY(-240px);
+	opacity: 0;
+}
