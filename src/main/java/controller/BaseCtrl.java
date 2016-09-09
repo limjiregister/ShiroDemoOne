@@ -12,9 +12,10 @@ public abstract class BaseCtrl {
 	 * 登录成功返回参数
 	 * @return
 	 */
-	public Response loginSuccess() {
+	public Response loginSuccess(String loginUser) {
 
 		Response response = new Response();
+		response.setData(loginUser);
 		response.setResponseCode(true);
 		response.setMsg("验证成功，现在为您跳转到管理页面.....");
 

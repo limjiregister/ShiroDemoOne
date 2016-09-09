@@ -5,6 +5,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.apache.shiro.subject.Subject;
+import org.apache.shiro.subject.support.DefaultSubjectContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +34,11 @@ public class LoginCtrl extends BaseCtrl {
 	@RequestMapping(value = "/doLogin.req", method = RequestMethod.GET)
 	public String login() {
 
+		System.out.println("this is No one!!!!");
+
 		if (SecurityUtils.getSubject().isAuthenticated()) {
+
+			System.out.println("this is No two!!!!");
 			return "redirect:/doLogin.req";
 		}
 		return "doLogin";
@@ -58,11 +63,12 @@ public class LoginCtrl extends BaseCtrl {
 		System.out.println("password:"+ password);
 
 		UsernamePasswordToken token = new UsernamePasswordToken(userName, password);
-		token.setRememberMe(true);
-		Subject subject = SecurityUtils.getSubject();
+//		token.setRememberMe(true);
+		Subject currentUser = SecurityUtils.getSubject();//获取当前用户
+		System.out.println("securityUtils:"+currentUser);
 		try {
 
-			subject.login(token);
+			currentUser.login(token);
 
 		} catch (IncorrectCredentialsException e) {
 			msg = "登录密码错误. Password for account " + token.getPrincipal() + " was incorrect.";
@@ -93,9 +99,8 @@ public class LoginCtrl extends BaseCtrl {
 			System.out.println(msg);
 			return loginFailure(msg);
 		}
-		System.out.println("hahahahahah");
-
-		return loginSuccess();
+		String loginUserName =  currentUser.getSession().getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY).toString();
+		return loginSuccess(loginUserName);
 	}
 
 }
