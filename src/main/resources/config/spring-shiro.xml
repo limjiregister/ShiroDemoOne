@@ -41,12 +41,12 @@
 		<!-- Shiro的核心安全接口，这个属性是必须的 -->
 		<property name = "securityManager" ref = "securityManager"></property>
 		<!-- 要求登录时的链接(登录页面地址)，如未认证的时候，不能连接home.jsp，非必须的属性，默认会自动寻找Web工程根目录下的"/login.jsp"页面 -->
-		<property name = "loginUrl" value = "/home.req" />
+		<property name = "loginUrl" value = "/login.req" />
 		<!-- 登录成功后要跳转的连接(本例中此属性用不到，因为登录成功后的处理逻辑在LoginController里硬编码) -->
 		 <!--认证成功统一跳转到first.action，建议不配置，shiro认证成功自动到上一个请求路径 -->
 		<property name="successUrl" value="/home.req" ></property>
 		<!-- 用户访问未对其授权的资源时，所显示的连接 -->
-		<property name = "unauthorizedUrl" value = "/doLogin.jsp"></property>
+		<property name = "unauthorizedUrl" value = "/home.req"></property>
 
 		<!-- Shiro连接约束配置,即过滤链的定义 -->
 		<property name = "filterChainDefinitions">
@@ -59,7 +59,7 @@
 				<!--  不拦截登陆请求 -->
 				/doLogin.req = anon
 				<!-- 请求 logout.action地址，shiro去清除session -->
-				/logout.action = logout
+				/goLogout.req = anon
 				<!-- /** = authc 所有url都必须认证通过才可以访问-->
 				/**=authc
 			</value>

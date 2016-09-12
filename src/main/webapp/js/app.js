@@ -1,10 +1,12 @@
+var loginModule = angular.module("loginMod", ["ui.bootstrap", 'toaster']);
+
 var app = angular.module("myapp", ["ui.router","ui.bootstrap",'toaster','ngAnimate']);
 
 app.run(["$rootScope","userSession", function ($rootScope, userSession) {
 
-	var loginInfoName = window.localStorage.getItem("currentUser");
-	console.log("loginInfoName:",loginInfoName);
-	console.log("userSession:",userSession.ifLogin);
+	var loginInfoName = window.sessionStorage.getItem("currentUser");
+	console.log("app show loginInfoName:",loginInfoName);
+	console.log("app show userSession ifLogin:",userSession.ifLogin);
 
 }]);
 

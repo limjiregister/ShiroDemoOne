@@ -3,15 +3,23 @@
 /**
  * handle the login user in session
  */
-app.service("userSession", function () {
+app.service("userSession", function ($window) {
 
-	this.ifLogin = false;
+	var a = $window.sessionStorage.getItem("loginFlag");
+
+	if (a == undefined) {
+		this.ifLogin = false;
+	} else {
+
+		this.ifLogin = $window.sessionStorage.getItem("loginFlag");
+	}
+
 
 	this.create = function (userName, userId, roleId) {
 		this.userName = userName;
 		this.userId = userId;
 		this.roleId = roleId;
-		this.ifLogin = true;
+		$window.sessionStorage.setItem("loginFlag", true);
 	};
 
 	this.destory = function () {
@@ -19,7 +27,7 @@ app.service("userSession", function () {
 		this.userName = null;
 		this.userId = null;
 		this.roleId = null;
-		this.ifLogin = false;
+		$window.sessionStorage.setItem("loginFlag", false);
 	};
 
 	return this;
@@ -36,6 +44,9 @@ app.factory("LoginAndOut", ["$http", function ($http) {
 
 			return $http.post("/doLogin.req", userInputInfo);
 
+		},
+		logoutRequest:function () {
+			return $http.post("/goLogout.req",{});
 		}
 
 	};

@@ -26,23 +26,29 @@ public class LoginCtrl extends BaseCtrl {
 	@Autowired
 	private ShiroDao shiroDao;
 
+	@Autowired
+	private HttpServletRequest request;
+
 	/**
 	 * GET 登录
 	 *
 	 * @return {String}
 	 */
-	@RequestMapping(value = "/doLogin.req", method = RequestMethod.GET)
-	public String login() {
-
-		System.out.println("this is No one!!!!");
-
-		if (SecurityUtils.getSubject().isAuthenticated()) {
-
-			System.out.println("this is No two!!!!");
-			return "redirect:/doLogin.req";
-		}
-		return "doLogin";
-	}
+//	@RequestMapping(value = "/home.req", method = RequestMethod.GET)
+//	public String login() {
+//
+//		System.out.println("this is No one!!!!");
+//
+//		if (SecurityUtils.getSubject().isAuthenticated()) {
+//
+//			System.out.println("this is home!!!!");
+//
+//			return "home";
+//		}
+//
+//
+//		return "home";
+//	}
 
 
 	/**
@@ -55,6 +61,8 @@ public class LoginCtrl extends BaseCtrl {
 	@ResponseBody
 	@RequestMapping(value = "/doLogin.req",method = RequestMethod.POST)
 	public Response doLogin(HttpServletRequest request ){
+
+
 		String msg = "";
 		String userName = request.getParameter("userName");
 		String password = request.getParameter("password");
@@ -65,7 +73,6 @@ public class LoginCtrl extends BaseCtrl {
 		UsernamePasswordToken token = new UsernamePasswordToken(userName, password);
 //		token.setRememberMe(true);
 		Subject currentUser = SecurityUtils.getSubject();//获取当前用户
-		System.out.println("securityUtils:"+currentUser);
 		try {
 
 			currentUser.login(token);
@@ -99,8 +106,31 @@ public class LoginCtrl extends BaseCtrl {
 			System.out.println(msg);
 			return loginFailure(msg);
 		}
-		String loginUserName =  currentUser.getSession().getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY).toString();
+		String loginUserName = currentUser.getSession().getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY).toString();
+
+		System.out.println("request url:" + request.getSession().getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY).toString());
+		System.out.println("session timeOut:" + currentUser.getSession().getTimeout());
+		System.out.println("session host:"+currentUser.getSession().getId());
+		request.getSession().setAttribute("user", loginUserName);
+
 		return loginSuccess(loginUserName);
 	}
 
+
+	@ResponseBody
+	@RequestMapping(value = "/goLogout.req", method = RequestMethod.POST)
+	public String doLgout() {
+
+		System.out.println("out,out,out");
+
+		Subject curUser = SecurityUtils.getSubject();
+		if (curUser.isAuthenticated()) {
+
+			curUser.logout();
+
+		}
+
+		return "1";
+
+	}
 }

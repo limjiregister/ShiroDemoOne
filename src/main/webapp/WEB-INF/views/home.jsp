@@ -1,64 +1,34 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+<%@ page import="org.apache.shiro.subject.support.DefaultSubjectContext" %>
+<%@ taglib prefix="s" uri="http://shiro.apache.org/tags" %>
 <html ng-app="myapp">
 <head>
 	<title>Home</title>
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.ico"/>
+	<link rel="bookmark" href="/favicon.ico"/>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/toaster.min.css"/>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/self.css"/>
 	<base href="/">
 </head>
 
-<body ng-controller="mainCtrl">
 
+<body ng-controller="mainCtrl">
 <div class="header">
 	<a href="javascript:void(0)" class="logo"><img src="/images/logo.png"></a>
 
 	<div class="loginfont">
-		<ul ng-if="!ifLogin">
-			<li><a href="javascript:void(0)" class="login">登录</a></li>
-		</ul>
 
 		<!--  TODO:show login info -->
-		<div ng-if="ifLogin" class="loginNameArea"><span style="font-size: 20px;">欢迎：<shiro:principal/></span></div>
+		<div class="loginNameArea"><span style="font-size: 20px;">欢迎：<s:principal></s:principal></span><span style="margin-left: 20px;font-size: 20px;"><a
+				href="javascript:void(0)" class="login" style="color: red;" ng-click="goLogout()">退出</a></span></div>
 
 	</div>
 
 </div>
 
-<toaster-container style="top: 300px !important;right: 680px;"></toaster-container>
 
-<div ng-if="!ifLogin" id="loginBody">
-
-	<div class="form-top">
-		<div class="form-top-left">
-			<h3>WELCOME LOGIN SYSTEM</h3>
-			<p>Enter your username and password to log on:</p>
-		</div>
-		<div class="form-top-right">
-			<i class="fa fa-lock"></i>
-		</div>
-	</div>
-
-	<div class="form-bottom">
-		<form class="login-form" name="form-host" ng-submit="goLogin()">
-			<div class="form-group">
-				<label class="sr-only" for="form-username">Username</label>
-				<input type="text" name="form-username" placeholder="Username..." class="form-username form-control"
-					   id="form-username" ng-model="loginInfo.userName" ng-required="true">
-			</div>
-			<div class="form-group">
-				<label class="sr-only" for="form-password">Password</label>
-				<input type="password" name="form-password" placeholder="Password..."
-					   class="form-password form-control" id="form-password" ng-model="loginInfo.password"
-					   ng-required="true">
-			</div>
-			<button type="submit" class="btn" ng-disabled="login-form.$invalid">登陆</button>
-		</form>
-	</div>
-</div>
-
-<div ng-if="ifLogin">
+<div>
 	<div id="side">
 		<ul>
 			<li><a ui-sref="doLogin">用户管理</a></li>
@@ -70,12 +40,6 @@
 		<div ui-view class="aaa"></div>
 	</div>
 </div>
-<%--
-
-<p><a href="add.req">add page</a></p>
-<p><a href="second.req">踏上第二页</a></p>
-<p><a href="third.req">踏上第三页</a></p>
---%>
 
 </body>
 

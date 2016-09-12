@@ -27,13 +27,13 @@ public class MainCtrl {
 	private ShiroDao shiroDao;
 
 
-	@RequestMapping(value = {"/home.req", "/add.req", "/second.req", "/third.req"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"/home.req", "/login.req", "/second.req", "/third.req"}, method = RequestMethod.GET)
 	public String homePage() {
 
 		switch (request.getRequestURI()) {
 
-			case "/add.req":
-				return "add";
+			case "/login.req":
+				return "login";
 			case "/second.req":
 				return "second";
 			case "/third.req":

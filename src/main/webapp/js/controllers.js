@@ -1,11 +1,13 @@
 /** Created on 2016/9/4 */
 
 app.controller("mainCtrl",
-	["$http", "$scope", "LoginAndOut", "toaster","userSession",function ($http, $scope, LoginAndOut, toaster, userSession) {
+	["$http", "$scope", "LoginAndOut", "toaster", "userSession", function ($http, $scope, LoginAndOut, toaster, userSession) {
 		/** init the loginInfo object*/
 		$scope.loginInfo = {};
 
-		console.log("ifLogin:",$scope.ifLogin);
+		$scope.ifLogin = userSession.ifLogin;
+		console.log("ifLogin0000000:", $scope.ifLogin);
+		console.log("localStorage sessionStorage:", window.sessionStorage.getItem("currentUser"));
 		/** login function*/
 		$scope.goLogin = function () {
 
@@ -25,9 +27,9 @@ app.controller("mainCtrl",
 
 					userSession.create(response.data, null, null);
 					$scope.ifLogin = userSession.ifLogin;
-					window.localStorage.setItem("currentUser", response.data);
-
-					console.log("localStorage currentUser:",window.localStorage.getItem("currentUser"));
+					window.sessionStorage.setItem("currentUser", response.data);
+					window.location.href = "/home.req";
+					console.log("localStorage sessionStorage:333", window.sessionStorage.getItem("currentUser"));
 				} else {
 
 					toaster.pop({
@@ -37,6 +39,24 @@ app.controller("mainCtrl",
 						showCloseButton: true,
 						timeout: 3000
 					});
+				}
+
+			});
+
+		};
+
+		$scope.goLogout = function () {
+
+			LoginAndOut.logoutRequest().success(function (resp) {
+
+				console.log(angular.equals(resp, 1));
+
+				if (angular.equals(resp,1)) {
+
+					userSession.destory();
+					console.log("sdfsdfsdfd", userSession.ifLogin);
+					window.location.reload("/home.req");
+
 				}
 
 			});
