@@ -34,21 +34,17 @@ public class LoginCtrl extends BaseCtrl {
 	 *
 	 * @return {String}
 	 */
-//	@RequestMapping(value = "/home.req", method = RequestMethod.GET)
-//	public String login() {
-//
-//		System.out.println("this is No one!!!!");
-//
-//		if (SecurityUtils.getSubject().isAuthenticated()) {
-//
-//			System.out.println("this is home!!!!");
-//
-//			return "home";
-//		}
-//
-//
-//		return "home";
-//	}
+	@RequestMapping(value = "/login.req", method = RequestMethod.GET)
+	public String login() {
+
+
+		if (SecurityUtils.getSubject().isAuthenticated()) {
+
+			return "redirect:/home.req";
+		}
+
+		return "login";
+	}
 
 
 	/**
@@ -106,31 +102,21 @@ public class LoginCtrl extends BaseCtrl {
 			System.out.println(msg);
 			return loginFailure(msg);
 		}
+
 		String loginUserName = currentUser.getSession().getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY).toString();
-
-		System.out.println("request url:" + request.getSession().getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY).toString());
-		System.out.println("session timeOut:" + currentUser.getSession().getTimeout());
-		System.out.println("session host:"+currentUser.getSession().getId());
-		request.getSession().setAttribute("user", loginUserName);
-
 		return loginSuccess(loginUserName);
 	}
 
 
 	@ResponseBody
 	@RequestMapping(value = "/goLogout.req", method = RequestMethod.POST)
-	public String doLgout() {
-
-		System.out.println("out,out,out");
+	public Response doLgout() {
 
 		Subject curUser = SecurityUtils.getSubject();
 		if (curUser.isAuthenticated()) {
 
 			curUser.logout();
-
 		}
-
-		return "1";
-
+		return logOutSuccess();
 	}
 }

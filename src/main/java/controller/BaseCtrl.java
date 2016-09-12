@@ -36,4 +36,17 @@ public abstract class BaseCtrl {
 		return response;
 	}
 
+
+	/**
+	 * 退出的信息
+	 * @return
+	 */
+	public Response logOutSuccess() {
+
+		Response response = new Response();
+		response.setResponseCode(true);
+
+		return response;
+	}
+
 }

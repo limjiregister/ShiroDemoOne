@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form" %>
-<html ng-app="loginMod">
+<html ng-app="myapp">
 <head>
 	<title>Login page</title>
 </head>
@@ -58,7 +58,6 @@
 
 
 </body>
-Compilation completed successfully in 288ms (21 minutes ago)
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jars/jquery-1.12.2.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jars/angular1.5.3.min.js"></script>
@@ -71,5 +70,4 @@ Compilation completed successfully in 288ms (21 minutes ago)
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/directive.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/services.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/controllers.js"></script>
-
 </html>

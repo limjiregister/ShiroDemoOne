@@ -39,14 +39,14 @@ app.factory("LoginAndOut", ["$http", function ($http) {
 
 
 	var service = {
-
+		//登录验证请求
 		loginValidation: function (userInputInfo) {
 
 			return $http.post("/doLogin.req", userInputInfo);
 
 		},
-		logoutRequest:function () {
-			return $http.post("/goLogout.req",{});
+		logoutRequest: function () {//登出请求
+			return $http.post("/goLogout.req", {});
 		}
 
 	};

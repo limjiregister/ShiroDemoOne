@@ -1,5 +1,3 @@
-var loginModule = angular.module("loginMod", ["ui.bootstrap", 'toaster']);
-
 var app = angular.module("myapp", ["ui.router","ui.bootstrap",'toaster','ngAnimate']);
 
 app.run(["$rootScope","userSession", function ($rootScope, userSession) {
