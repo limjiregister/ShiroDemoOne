@@ -1,4 +1,4 @@
-body{
+.loginbody{
 	background: url("/images/bg.jpg");
 }
 
@@ -55,7 +55,7 @@ li{
 	float: left;
 	width: 170px;
 	height: 100%;
-	background: #bbf2bf;
+	background: rgba(0, 0, 0, 0.58);
 	font-size: 18px;
 	color: #000;
 	margin-top: 3px;
@@ -122,7 +122,7 @@ li{
 	margin: 0 auto;
 }
 
-button.btn {
+.loginBtn {
 	height: 50px;
 	margin: 0;
 	padding: 0 20px;
@@ -149,12 +149,12 @@ button.btn {
 	width: 100%;
 }
 
-button.btn:hover {
+.loginBtn:hover {
 	opacity: 0.6;
 	color: #fff;
 }
 
-button.btn:active {
+.loginBtn:active {
 	outline: 0;
 	opacity: 0.6;
 	color: #fff;
@@ -203,24 +203,21 @@ button.btn:active {
 	opacity: 0.3;
 }
 
-button.btn:focus {
+.loginBtn:focus {
 	outline: 0;
 	opacity: 0.6;
 	background: #de615e;
 	color: #fff;
 }
 
-button.btn:active:focus, button.btn.active:focus {
+.loginBtn:active:focus, .loginBtn.active:focus {
 	outline: 0;
 	opacity: 0.6;
 	background: #de615e;
 	color: #fff;
 }
 
-input[type="text"],
-input[type="password"],
-textarea,
-textarea.form-control {
+.loginInput {
 	height: 50px;
 	margin: 0;
 	padding: 0 20px;
@@ -243,6 +240,7 @@ textarea.form-control {
 	-webkit-transition: all .3s;
 	-ms-transition: all .3s;
 	transition: all .3s;
+	width: 100%;
 }
 
 textarea,
@@ -252,10 +250,7 @@ textarea.form-control {
 	line-height: 30px;
 }
 
-input[type="text"]:focus,
-input[type="password"]:focus,
-textarea:focus,
-textarea.form-control:focus {
+.loginInput:focus {
 	outline: 0;
 	background: #fff;
 	border: 3px solid #fff;
@@ -264,18 +259,15 @@ textarea.form-control:focus {
 	box-shadow: none;
 }
 
-input[type="text"]:-moz-placeholder, input[type="password"]:-moz-placeholder,
-textarea:-moz-placeholder, textarea.form-control:-moz-placeholder {
+.loginInput:-moz-placeholder {
 	color: #888;
 }
 
-input[type="text"]:-ms-input-placeholder, input[type="password"]:-ms-input-placeholder,
-textarea:-ms-input-placeholder, textarea.form-control:-ms-input-placeholder {
+.loginInput:-ms-input-placeholder {
 	color: #888;
 }
 
-input[type="text"]::-webkit-input-placeholder, input[type="password"]::-webkit-input-placeholder,
-textarea::-webkit-input-placeholder, textarea.form-control::-webkit-input-placeholder {
+.loginInput::-webkit-input-placeholder {
 	color: #888;
 }
 

@@ -11,22 +11,20 @@ public class User implements Serializable {
 	private String password;
 	private String cellPhone;
 	private String email;
+	private Role roleId;
 
 	public User() {
 	}
 
-	public User(String userName, String password, String cellPhone, String email) {
+	public User(Integer id, String userName, String password, String cellPhone, String email, Role roleId) {
+		this.id = id;
 		this.userName = userName;
 		this.password = password;
 		this.cellPhone = cellPhone;
 		this.email = email;
+		this.roleId = roleId;
 	}
 
-
-	@Override
-	public String toString() {
-		return "User{" + "id=" + id + ", userName='" + userName + '\'' + ", password='" + password + '\'' + ", cellPhone='" + cellPhone + '\'' + ", email='" + email + '\'' + '}';
-	}
 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
@@ -68,5 +66,16 @@ public class User implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+
+	@OneToOne
+	@JoinColumn(name = "Role_Id",referencedColumnName = "ROLE_ID")
+	public Role getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(Role roleId) {
+		this.roleId = roleId;
 	}
 }

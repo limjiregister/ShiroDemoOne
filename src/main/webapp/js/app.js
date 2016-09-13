@@ -1,23 +1,26 @@
-var app = angular.module("myapp", ["ui.router","ui.bootstrap",'toaster','ngAnimate']);
+var app = angular.module("myapp", ["ui.router","ui.bootstrap",'toaster','ngAnimate','ng-pagination','siTable']);
 
 app.run(["$rootScope","userSession", function ($rootScope, userSession) {
 
 	var loginInfoName = window.sessionStorage.getItem("currentUser");
-	console.log("app show loginInfoName:",loginInfoName);
-	console.log("app show userSession ifLogin:",userSession.ifLogin);
 
 }]);
 
 //ui-router
 app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
-	// $urlRouterProvider.otherwise("doLongin")
+	$urlRouterProvider.otherwise("/home.req");
+
 	$locationProvider.html5Mode(true);
 
-	$stateProvider.state("doLogin", {
-		url: "/doLogin",
-		templateUrl: "/doLogin.req",
-		controller: "loginCtrl"
+	$stateProvider.state("userManagement", {
+		url: "/userManagement",
+		templateUrl: "/userMan.req",
+		controller: "userManCtrl"
+	}).state("functionManagement",{
+		url:"/functionManagement",
+		templateUrl: "/functionsMan.req",
+		controller: "functionsManCtrl"
 
 	})
 });

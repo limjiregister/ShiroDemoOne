@@ -49,4 +49,19 @@ public abstract class BaseCtrl {
 		return response;
 	}
 
+
+	/**
+	 * 加载数据返回对象
+	 * @param obj 返回list或者其他
+	 * @return
+	 */
+	public Response loadDataSuccess(Object obj) {
+
+
+		Response response = new Response();
+		response.setData(obj);
+		response.setResponseCode(true);
+
+		return response;
+	}
 }

@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="org.apache.shiro.subject.support.DefaultSubjectContext" %>
 <%@ taglib prefix="s" uri="http://shiro.apache.org/tags" %>
 <html ng-app="myapp">
 <head>
@@ -8,6 +7,7 @@
 	<link rel="bookmark" href="/favicon.ico"/>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/toaster.min.css"/>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/ng-pagination.min.css"/>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/self.css"/>
 	<base href="/">
 </head>
@@ -29,11 +29,8 @@
 
 
 <div>
-	<div id="side">
-		<ul>
-			<li><a ui-sref="doLogin">用户管理</a></li>
-		</ul>
-	</div>
+
+	<side-menu-directive></side-menu-directive>
 
 	<div id="content">
 		<!-- stage is the key where the aimation work-->
@@ -50,8 +47,10 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jars/angular-animate.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jars/ui-bootstrap-tpls-2.0.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jars/toaster.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jars/si-table.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jars/ng-pagination.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/app.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/directive.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/services.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/controllers.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/directive.js"></script>
 </html>

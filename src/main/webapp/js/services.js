@@ -54,3 +54,17 @@ app.factory("LoginAndOut", ["$http", function ($http) {
 	return service;
 
 }]);
+
+app.factory("baseMethod", ["$http", function ($http) {
+
+	var service = {
+
+		loadData:function (reqUrl,argsObj) {
+
+			return $http.post(reqUrl, argsObj);
+		}
+
+	};
+
+	return service;
+}]);

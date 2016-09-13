@@ -63,9 +63,6 @@ public class LoginCtrl extends BaseCtrl {
 		String userName = request.getParameter("userName");
 		String password = request.getParameter("password");
 
-		System.out.println("userName:"+ userName);
-		System.out.println("password:"+ password);
-
 		UsernamePasswordToken token = new UsernamePasswordToken(userName, password);
 //		token.setRememberMe(true);
 		Subject currentUser = SecurityUtils.getSubject();//获取当前用户

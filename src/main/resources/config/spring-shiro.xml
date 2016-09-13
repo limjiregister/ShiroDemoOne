@@ -46,7 +46,7 @@
 		 <!--认证成功统一跳转到first.action，建议不配置，shiro认证成功自动到上一个请求路径 -->
 		<property name="successUrl" value="/home.req" ></property>
 		<!-- 用户访问未对其授权的资源时，所显示的连接 -->
-		<property name = "unauthorizedUrl" value = "/login.req"></property>
+		<property name = "unauthorizedUrl" value = "/home.req"></property>
 
 		<!-- Shiro连接约束配置,即过滤链的定义 -->
 		<property name = "filterChainDefinitions">
@@ -54,6 +54,7 @@
 				<!--    /** = anon所有url都可以匿名访问   -->
 				<!-- 对静态资源设置匿名访问 -->
 				/images/** = anon
+				/template/** = anon
 				/js/** = anon
 				/css/** = anon
 				<!--  不拦截登陆请求 -->

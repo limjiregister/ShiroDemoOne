@@ -8,8 +8,9 @@
 <link rel="bookmark" href="/favicon.ico"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/toaster.min.css"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/ng-pagination.min.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/self.css"/>
-<body ng-controller="mainCtrl">
+<body ng-controller="mainCtrl" class="loginbody">
 
 <div class="header">
 	<a href="javascript:void(0)" class="logo"><img src="/images/logo.png"></a>
@@ -42,16 +43,16 @@
 		<form class="login-form" name="form-host" ng-submit="goLogin()">
 			<div class="form-group">
 				<label class="sr-only" for="form-username">Username</label>
-				<input type="text" name="form-username" placeholder="Username..." class="form-username form-control"
+				<input type="text" name="form-username" placeholder="Username..." class="form-username loginInput"
 					   id="form-username" ng-model="loginInfo.userName" ng-required="true">
 			</div>
 			<div class="form-group">
 				<label class="sr-only" for="form-password">Password</label>
 				<input type="password" name="form-password" placeholder="Password..."
-					   class="form-password form-control" id="form-password" ng-model="loginInfo.password"
+					   class="form-password loginInput" id="form-password" ng-model="loginInfo.password"
 					   ng-required="true">
 			</div>
-			<button type="submit" class="btn" ng-disabled="login-form.$invalid">登陆</button>
+			<button type="submit" class="loginBtn" ng-disabled="login-form.$invalid">登陆</button>
 		</form>
 	</div>
 </div>
@@ -63,6 +64,8 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jars/angular1.5.3.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jars/angular-ui-router.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jars/bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jars/si-table.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jars/ng-pagination.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jars/angular-animate.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jars/ui-bootstrap-tpls-2.0.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jars/toaster.min.js"></script>
