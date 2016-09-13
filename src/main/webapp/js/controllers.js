@@ -81,14 +81,35 @@ app.controller("sideMenuCtrl", ["$scope", "baseMethod", function ($scope, baseMe
 
 app.controller("functionsManCtrl", ["$scope", "baseMethod", "$uibModal", function ($scope, baseMethod, $uibModal) {
 
-	baseMethod.loadData("/loadAllFunctions.req", {}).success(function (resp) {
-		if (resp.responseCode) {
-			$scope.items = resp.data.content;
-			$scope.totalItems = resp.data.totalElements;
-			$scope.pageCount = resp.data.totalPages;
-		}
-	});
+	/**
+	 * 启动时候首次加载数据
+	 */
+	loadDatas();
 
+	function loadDatas(pageNo) {
+
+		var args = {};
+
+		if (pageNo != undefined) {
+
+			args = {"pageNo": pageNo}
+
+		}
+
+		baseMethod.loadData("/loadAllFunctions.req", args).success(function (resp) {
+			if (resp.responseCode) {
+				$scope.items = resp.data.content;
+				$scope.totalItems = resp.data.totalElements;
+				$scope.pageCount = resp.data.totalPages;
+			}
+		});
+
+	}
+
+	/**
+	 * 新增 功能 方法
+	 * @constructor
+	 */
 	$scope.AddNew = function () {
 
 		$uibModal.open({
@@ -98,9 +119,14 @@ app.controller("functionsManCtrl", ["$scope", "baseMethod", "$uibModal", functio
 			controller: function ($scope, $uibModalInstance) {
 
 				$scope.ok = function () {
+					baseMethod.saveNewOrEdit("/saveNewFunction.req", $scope.newFun).success(function (resp) {
 
-					console.log("newOne:",$scope.newFun);
-					alert("TODO::");
+						if (resp.responseCode) {
+							loadDatas($scope.currentPage);
+							$uibModalInstance.dismiss('cancel');
+							alert("保存成功!");
+						}
+					});
 
 				};
 				$scope.cancel = function () {
@@ -130,7 +156,18 @@ app.controller("functionsManCtrl", ["$scope", "baseMethod", "$uibModal", functio
 				$scope.ok = function () {
 
 					console.log("newOne:", $scope.newFun);
-					alert("TODO::");
+
+					baseMethod.saveNewOrEdit("/editFunction.req", $scope.newFun).success(function (resp) {
+
+						if (resp.responseCode) {
+
+							loadDatas($scope.currentPage);
+							$uibModalInstance.dismiss('cancel');
+							alert("保存成功!");
+						}
+
+					});
+
 
 				};
 
@@ -142,9 +179,22 @@ app.controller("functionsManCtrl", ["$scope", "baseMethod", "$uibModal", functio
 		});
 	};
 
-	$scope.DeleteOne = function (i) {
+	$scope.DeleteOne = function (obj) {
 
-		alert("not finish yet!")
+		if (confirm("确定要删除【" + obj.nameZh + "】的信息吗？")) {
+
+			baseMethod.deleteObj("/deleteFunction.req", {"id": obj.id}).success(function (resp) {
+
+				if (resp.responseCode) {
+
+					loadDatas($scope.currentPage);
+
+				}
+
+			});
+
+		}
+
 	};
 
 

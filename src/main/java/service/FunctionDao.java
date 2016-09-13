@@ -9,4 +9,10 @@ import org.springframework.data.domain.Page;
 public interface FunctionDao {
 
 	Page<Function> loadAllFunctions(Integer pageNo);
+
+	Function saveNewFun(Function function);
+
+	void deleteFun(Integer id);
+
+	Function getFunById(Integer id);
 }

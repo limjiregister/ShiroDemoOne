@@ -2,6 +2,7 @@ package controller;
 
 import Utils.MD5Util;
 import com.alibaba.fastjson.JSON;
+import domain.Function;
 import domain.Response;
 import domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +69,7 @@ public class MainCtrl extends BaseCtrl {
 
 	/**
 	 * 返回functions数据
+	 *
 	 * @return
 	 */
 	@ResponseBody
@@ -78,9 +80,54 @@ public class MainCtrl extends BaseCtrl {
 
 		if (request.getParameter("pageNo") != null) {
 
-			pageNo= Integer.valueOf(request.getParameter("pageNo"));
+			pageNo = Integer.valueOf(request.getParameter("pageNo"));
 		}
 
 		return loadDataSuccess(functionDao.loadAllFunctions(pageNo));
+	}
+
+	/**
+	 * 保存功能
+	 *
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/saveNewFunction.req", method = RequestMethod.POST)
+	public Response saveNewFunction() {
+
+		String nameZh = request.getParameter("nameZh");
+		String reqUrl = request.getParameter("reqUrl");
+		String remark = request.getParameter("remark");
+
+		Function f = functionDao.saveNewFun(new Function(null, nameZh, reqUrl, remark));
+		return loadDataSuccess(f);
+	}
+
+
+	/**
+	 * 删除功能
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/deleteFunction.req", method = RequestMethod.POST)
+	public Response deleteFunction() {
+
+		functionDao.deleteFun(Integer.parseInt(request.getParameter("id")));
+		return loadDataSuccess(null);
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/editFunction.req",method = RequestMethod.POST)
+	public Response editFunction() {
+
+		Integer id = Integer.parseInt(request.getParameter("id"));
+
+		Function function = functionDao.getFunById(id);
+		function.setNameZh(request.getParameter("nameZh"));
+		function.setReqUrl(request.getParameter("reqUrl"));
+		function.setRemark(request.getParameter("remark"));
+
+		return loadDataSuccess(functionDao.saveNewFun(function));
+
 	}
 }

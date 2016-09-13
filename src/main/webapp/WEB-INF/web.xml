@@ -12,6 +12,25 @@
     <welcome-file>/WEB-INF/views/home.jsp</welcome-file>
   </welcome-file-list>
 
+  <!--解决jpa使用update没有session无法获取事务的情况，readonly的情况-注意jpa和hibernate的区别-->
+
+  <filter>
+    <filter-name>OpenEntityManagerInViewFilter</filter-name>
+    <filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
+    <init-param>
+      <param-name>singleSession</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <init-param>
+      <param-name>flushMode</param-name>
+      <param-value>AUTO</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>OpenEntityManagerInViewFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
   <!--mybatis配置log4J保存log文件到目录的相对路径下的配置-->
 <!--  <context-param>
     <param-name>webAppRootKey</param-name>

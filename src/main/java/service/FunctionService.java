@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import repository.FunctionRepo;
 
 /**
@@ -24,5 +25,22 @@ public class FunctionService implements FunctionDao {
 		return functionRepo.findAll(request);
 	}
 
+	@Transactional
+	@Override
+	public Function saveNewFun(Function function) {
+		return functionRepo.saveAndFlush(function);
+	}
 
+	@Transactional
+	@Override
+	public void deleteFun(Integer id) {
+
+		functionRepo.delete(id);
+	}
+
+	@Override
+	public Function getFunById(Integer id) {
+
+		return functionRepo.getOne(id);
+	}
 }

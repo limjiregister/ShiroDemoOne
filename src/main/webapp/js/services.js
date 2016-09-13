@@ -62,6 +62,14 @@ app.factory("baseMethod", ["$http", function ($http) {
 		loadData:function (reqUrl,argsObj) {
 
 			return $http.post(reqUrl, argsObj);
+		},
+		saveNewOrEdit:function (reqUrl,argsObj) {
+
+			return $http.post(reqUrl, argsObj);
+		},
+		deleteObj:function (reqUrl,argsObj) {
+
+			return $http.post(reqUrl, argsObj);
 		}
 
 	};
