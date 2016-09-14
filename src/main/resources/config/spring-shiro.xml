@@ -21,8 +21,8 @@
 		<property name = "permissionsLookupEnabled" value = "true"></property>
 		<property name = "dataSource" ref = "dataSource"></property>
 		<property name = "authenticationQuery" value = "SELECT password FROM shiro_user WHERE userName = ?"></property>
-		<!--<property name = "userRolesQuery"-->
-		          <!--value = "SELECT role_name from sec_user_role left join sec_role using(role_id) left join sec_user using(user_id) WHERE user_name = ?"></property>-->
+		<property name = "userRolesQuery"
+		          value = "SELECT r.nameZh FROM shiro_user s LEFT JOIN shiro_role r ON s.Role_Id=r.ROLE_ID WHERE s.userName= ?"></property>
 		<!--<property name = "permissionsQuery"-->
 		          <!--value = "SELECT permission_name FROM sec_role_permission left join sec_role using(role_id) left join sec_permission using(permission_id) WHERE role_name = ?"></property>-->
 	</bean>

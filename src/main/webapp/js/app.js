@@ -1,6 +1,6 @@
-var app = angular.module("myapp", ["ui.router","ui.bootstrap",'toaster','ngAnimate','ng-pagination','siTable']);
+var app = angular.module("myapp", ["ui.router", "ui.bootstrap", 'toaster', 'ngAnimate', 'ng-pagination', 'siTable']);
 
-app.run(["$rootScope","userSession", function ($rootScope, userSession) {
+app.run(["$rootScope", "userSession", function ($rootScope, userSession) {
 
 	var loginInfoName = window.sessionStorage.getItem("currentUser");
 
@@ -14,13 +14,17 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 	$locationProvider.html5Mode(true);
 
 	$stateProvider.state("userManagement", {
-		url: "/userManagement",
+		url: "/home/userManagement.req",
 		templateUrl: "/userMan.req",
 		controller: "userManCtrl"
-	}).state("functionManagement",{
-		url:"/functionManagement",
+	}).state("functionManagement", {
+		url: "/home/functionManagement.req",
 		templateUrl: "/functionsMan.req",
 		controller: "functionsManCtrl"
+	}).state("roleAuthorityManagement", {
+		url: "/home/	roleAuthorityManagement.req",
+		templateUrl: "",
+		controller: ""
 
 	})
 });
@@ -53,16 +57,16 @@ function HttpInterceptor($q, $timeout) {
 
 			return config;
 		},
-		requestError:function (err) {
+		requestError: function (err) {
 
 			return $q.reject(err);
 		},
-		response:function (resp) {
+		response: function (resp) {
 
 			return $q.resolve(resp);
-			
+
 		},
-		responseError:function (err) {
+		responseError: function (err) {
 
 			return $q.reject(err);
 		}

@@ -20,7 +20,7 @@
 	<div class="loginfont">
 
 		<!--  TODO:show login info -->
-		<div class="loginNameArea"><span style="font-size: 20px;">欢迎：<s:principal></s:principal></span><span style="margin-left: 20px;font-size: 20px;"><a
+		<div class="loginNameArea"><span style="font-size: 20px;">欢迎：<s:principal></s:principal> </span><span style="margin-left: 20px;font-size: 20px;"><a
 				href="javascript:void(0)" class="login" style="color: red;" ng-click="goLogout()">退出</a></span></div>
 
 	</div>
