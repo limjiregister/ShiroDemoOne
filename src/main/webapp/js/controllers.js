@@ -200,7 +200,108 @@ app.controller("functionsManCtrl", ["$scope", "baseMethod", "$uibModal", functio
 
 }]);
 
-app.controller("userManCtrl", ["$scope", function ($scope) {
+app.controller("userManCtrl", ["$scope", "baseMethod", "$uibModal", function ($scope, baseMethod, $uibModal) {
+
+	loadDatas();
+
+	function loadDatas(pageNo) {
+
+		var args = {};
+
+		if (pageNo != undefined) {
+
+			args = {"pageNo": pageNo}
+
+		}
+
+		baseMethod.loadData("/loadAllUsers.req", args).success(function (resp) {
+			if (resp.responseCode) {
+				$scope.items = resp.data.content;
+				$scope.totalItems = resp.data.totalElements;
+				$scope.pageCount = resp.data.totalPages;
+			}
+		});
+	}
+
+
+	/**
+	 * 新增 功能 方法
+	 * @constructor
+	 */
+	$scope.AddNew = function () {
+
+		$uibModal.open({
+			animation: true,
+			templateUrl: 'functionEdit.html',
+			size: "lg",
+			controller: function ($scope, $uibModalInstance) {
+
+				$scope.ok = function () {
+					baseMethod.saveNewOrEdit("/addUser.req", $scope.newFun).success(function (resp) {
+
+						if (resp.responseCode) {
+							loadDatas($scope.currentPage);
+							$uibModalInstance.dismiss('cancel');
+							alert("保存成功!");
+						}
+					});
+
+				};
+				$scope.cancel = function () {
+					$uibModalInstance.dismiss('cancel');
+				};
+
+			}
+		});
+
+	};
+
+	/**
+	 * 更新方法
+	 * @param item
+	 * @constructor
+	 */
+	$scope.EditOne = function (item) {
+
+		$uibModal.open({
+			animation: true,
+			templateUrl: 'functionEdit.html',
+			size: "lg",
+			resolve: {
+				item: function () {
+					return item;
+				}
+			},
+			controller: function ($scope, $uibModalInstance, item) {
+
+				$scope.newFun = item;
+				$scope.ok = function () {
+
+					console.log("newOne:", $scope.newFun);
+
+					baseMethod.saveNewOrEdit("/updateUserInfo.req", $scope.newFun).success(function (resp) {
+
+						if (resp.responseCode) {
+
+							loadDatas($scope.currentPage);
+							$uibModalInstance.dismiss('cancel');
+							alert("保存成功!");
+							$scope.editStatus = false;
+						}
+
+					});
+
+
+				};
+
+				$scope.cancel = function () {
+					$uibModalInstance.dismiss('cancel');
+				};
+
+			}
+		});
+	};
+
 
 
 }]);

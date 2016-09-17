@@ -2,11 +2,17 @@ package controller;
 
 
 import domain.Response;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created on 2016/9/3 22:15
  */
 public abstract class BaseCtrl {
+
+	@Autowired
+	 HttpServletRequest request;
 
 	/**
 	 * 登录成功返回参数

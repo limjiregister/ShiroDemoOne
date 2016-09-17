@@ -13,6 +13,11 @@ public class User implements Serializable {
 	private String email;
 	private Role roleId;
 
+	@Override
+	public String toString() {
+		return "User{" + "id=" + id + ", userName='" + userName + '\'' + ", password='" + password + '\'' + ", cellPhone='" + cellPhone + '\'' + ", email='" + email + '\'' + ", roleId=" + roleId + '}';
+	}
+
 	public User() {
 	}
 
